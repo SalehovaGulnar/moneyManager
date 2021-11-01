@@ -5,6 +5,7 @@ import com.example.moneymanager.dao.TypeDAO;
 import com.example.moneymanager.dto.TypeDTO;
 import com.example.moneymanager.model.Category;
 import com.example.moneymanager.model.Type;
+import com.example.moneymanager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.Optional;
 
 @Controller
-public class UserController {
+public class TypeController {
 
     @Autowired
     CategoryDAO categoryDAO;
@@ -24,53 +25,50 @@ public class UserController {
     @Autowired
     TypeDAO typeDAO;
 
-    @GetMapping
-    public String getUser() {
-        return "userHome";
-    }
+    @Autowired
+    UserService userService;
 
-    //Types section
-
-    @GetMapping("/user/types")
+    @GetMapping("/types")
     public String getTypes(Model model) {
         model.addAttribute("categories", categoryDAO.getAllCategories());
-        model.addAttribute("types", typeDAO.getAllTypes());
+        model.addAttribute("types", typeDAO.getAllTypeByLoggedUser(userService.getLoggedUser()));
         return "types";
     }
 
-    @GetMapping("/admin/type/add")
+    @GetMapping("/type/add")
     public String getTypeAdd(Model model) {
         model.addAttribute("categoryDTO", categoryDAO.getAllCategories());
         model.addAttribute("typeDTO", new TypeDTO());
         return "typeAdd";
     }
 
-    @PostMapping("/admin/type/add")
+    @PostMapping("/type/add")
     public String postTypeAdd(@ModelAttribute("typeDTO") TypeDTO typeDTO) {
         Type type = new Type();
         type.setId(typeDTO.getId());
         type.setName(typeDTO.getName());
-        System.out.println("type name = " + type.getName());
+        type.setUser(userService.getLoggedUser());
         Optional<Category> category = categoryDAO.getCategoryById(typeDTO.getCategoryId());
         type.setCategory(category.get());
         typeDAO.addType(type);
-        return "redirect:/admin/types";
+        return "redirect:/types";
     }
 
-    @GetMapping("/admin/type/delete/{id}")
+    @GetMapping("/type/delete/{id}")
     public String getTypeDelete(@PathVariable("id") Integer id) {
         typeDAO.deleteTypeById(id);
-        return "redirect:/admin/types";
+        return "redirect:/types";
 
     }
 
-    @GetMapping("/admin/type/update/{id}")
-    public String getTypeDelete(@PathVariable("id") Integer id, Model model) {
+    @GetMapping("/type/update/{id}")
+    public String getTypeUpdate(@PathVariable("id") Integer id, Model model) {
         Optional<Type> type = typeDAO.getTypeById(id);
         if(type.isPresent()) {
             TypeDTO typeDTO = new TypeDTO();
             typeDTO.setId(type.get().getId());
             typeDTO.setName(type.get().getName());
+            typeDTO.setUserId(userService.getLoggedUser().getId());
             typeDTO.setCategoryId(type.get().getCategory().getId());
             model.addAttribute("categoryDTO", categoryDAO.getAllCategories());
             model.addAttribute("typeDTO", typeDTO);

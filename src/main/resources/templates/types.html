@@ -17,9 +17,6 @@
       <ul class="navbar-nav mr-auto"></ul>
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" th:href="@{/admin}" href="#">admin-home</a>
-        </li>
-        <li class="nav-item active">
           <a class="nav-link" th:href="@{/logout}" href="#">logout</a>
         </li>
 
@@ -30,7 +27,7 @@
 </nav>
 <div class="container-fluid">
 
-  <a th:href="@{/admin/type/add}" style="margin: 20px 0" class="btn btn-primary">Add Type</a>
+  <a th:href="@{/type/add}" style="margin: 20px 0" class="btn btn-primary">Add Type</a>
   <table class="table">
     <thead class="thead-light">
     <tr>
@@ -47,8 +44,8 @@
       <th scope="row" th:text="${iStat.index + 1}">1</th>
       <td th:text="${type.name}">Larry</td>
       <td th:text="${type.category.name}">Larry</td>
-      <td><a href="" th:href="@{/admin/type/delete/{id}(id=${type.id})}" class="btn btn-danger">Delete</a></td>
-      <td><a href="" th:href="@{/admin/type/update/{id}(id=${type.id})}" class="btn btn-warning">Update</a></td>
+      <td><a href="" th:href="@{/type/delete/{id}(id=${type.id})}" class="btn btn-danger">Delete</a></td>
+      <td><a href="" th:href="@{/type/update/{id}(id=${type.id})}" class="btn btn-warning">Update</a></td>
     </tr>
     </tbody>
   </table>

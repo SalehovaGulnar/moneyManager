@@ -11,4 +11,6 @@ public class TypeDTO {
     private String name;
 
     private int categoryId;
+
+    private int userId;
 }

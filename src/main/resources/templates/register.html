@@ -12,6 +12,8 @@
   <title>Document</title>
 </head>
 <body>
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light" >
   <div class="container-fluid">
 
@@ -19,10 +21,10 @@
       <ul class="navbar-nav mr-auto"></ul>
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" th:href="@{/}" href="#">admin-home</a>
+          <a class="nav-link" th:href="@{/}" href="#">home</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" th:href="@{/logout}" href="#">logout</a>
+          <a class="nav-link" href="#">Logout</a>
         </li>
 
       </ul>
@@ -30,35 +32,38 @@
     </div>
   </div>
 </nav>
-<div class="jumbotron text-center">
-  <h1 class="display-4">Welcome back, Admin</h1>
-</div>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-3 pt-3" >
-      <div class="card" style="background-color:white;">
-        <div class="card-body">
-          <h4 class="card-title">Categories</h4>
-          <p class="card-text">Manage the categories section here.</p>
-          <a href="#" th:href="@{/categories}" class="card-link btn btn-primary">Manage</a>
-
-        </div>
+<div class="container">
+  <div class="col-sm-6">
+    <h3 style="margin-top: 10px">Sign Up Now</h3>
+    <p>Please fill out this to register</p>
+    <form th:action="@{/register}" th:object="${user}" method="post">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" name="firstName" id="firstName" required placeholder="Your Firstname" class="form-control form-control-lg">
       </div>
-    </div>
-    <div class="col-sm-3 pt-3" >
-      <div class="card" style="background-color:white;">
-        <div class="card-body">
-          <h4 class="card-title">Types</h4>
-          <p class="card-text">Manage all the types here.</p>
-          <a href="#" th:href="@{/types}" class="card-link btn btn-primary">Manage</a>
-
-        </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" name="lastName" id="lastName" required placeholder="Your Lastname" class="form-control form-control-lg">
       </div>
-    </div>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control form-control-lg" required minlength="6" placeholder="Email" name="email" id="email"
+               aria-describedby="emailHelp">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+          anyone else.</small>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control form-control-lg" required placeholder="Password" name="password"
+               id="password">
+      </div>
 
+      <input type="submit" value="Register" class="btn btn-primary btn-block">
+      <span style="margin-top: 10px">Already have an account <a class="linkControl" href="./login.html"
+                                                                th:href="@{/login}">Login here</a></span>
+    </form>
   </div>
 </div>
-
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
