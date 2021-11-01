@@ -25,6 +25,10 @@ public class Transaction {
     @NotNull
     private Double amount;
 
-    private String Description;
+    private String description;
+
+    @ManyToOne(fetch =  FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "ID")
+    private User user;
 
 }

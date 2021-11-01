@@ -8,11 +8,15 @@ public class TransactionDTO {
 
     private int id;
 
+    private int categoryId;
+
     private int typeId;
 
     private Date date;
 
     private Double amount;
 
-    private String Description;
+    private String description;
+
+    private int userId;
 }

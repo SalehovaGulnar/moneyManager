@@ -1,6 +1,7 @@
 package com.example.moneymanager.service;
 
 import com.example.moneymanager.dao.TypeDAO;
+import com.example.moneymanager.model.Category;
 import com.example.moneymanager.model.Type;
 import com.example.moneymanager.model.User;
 import com.example.moneymanager.repository.TypeRepository;
@@ -28,10 +29,10 @@ public class TypeService implements TypeDAO{
     }
 
     @Override
-    public List<Type> getAllTypeByUser(User user) {
+    public List<Type> getAllByUserAndCategory(User user, Category category) {
         List<Integer> userList = new ArrayList<>();
         userList.add(user.getId());
-        return typeRepository.findAllByUser_IdIn(userList);
+        return typeRepository.findAllByUser_IdInAndCategory_Id(userList, category);
     }
 
     @Override

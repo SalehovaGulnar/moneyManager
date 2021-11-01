@@ -40,17 +40,11 @@
 </nav>
 <div class="container">
   <h3>Add a new Type</h3>
-  <form th:action="@{/type/add}" method="post" th:object="${typeDTO}" enctype="multipart/form-data">
+  <form th:action="@{/transaction/add}" method="post" th:object="${transactionDTO}" enctype="multipart/form-data">
     <div class="row">
       <div class="col-sm-5">
 
         <input type="hidden" name="id" th:field="*{id}">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" class="form-control" required th:field="*{name}" name="name" id="name"
-                 placeholder="Enter name">
-
-        </div>
         <div class="form-group">
           <label for="category">Select Category</label>
           <select class="form-control" th:field="*{categoryId}" id="category" name="category">
@@ -59,6 +53,27 @@
                     th:text="${category.name}"
             >
           </select>
+        </div>
+        <div class="form-group">
+          <label for="category">Select Type</label>
+          <select class="form-control" th:field="*{typeId}" id="type" name="type">
+            <option th:each="type :${typeDTO}"
+                    th:value="${type.id}"
+                    th:text="${type.name}"
+            >
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="description">Date</label>
+          <input type="date" class="form-control"  th:field="*{date}" name="date" id="date" placeholder="dd-mm-yyyy" value="" min="1997-01-01" max="2030-12-31">
+        </div>
+        <div class="form-group">
+          <label for="description">Amount1400</label>
+          <input type="number" class="form-control"  th:field="*{amount}" name="amount" id="amount" min="0">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" class="form-control"  th:field="*{description}" name="description" id="description">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>
