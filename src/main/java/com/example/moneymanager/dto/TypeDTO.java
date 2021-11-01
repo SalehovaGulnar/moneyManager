@@ -1,6 +1,5 @@
 package com.example.moneymanager.dto;
 
-import com.example.moneymanager.model.Category;
 import lombok.Data;
 
 @Data

@@ -1,7 +1,6 @@
 package com.example.moneymanager.model;
 
 import lombok.Data;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 

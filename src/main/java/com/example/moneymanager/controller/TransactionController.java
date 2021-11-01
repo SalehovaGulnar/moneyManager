@@ -4,8 +4,6 @@ import com.example.moneymanager.dao.CategoryDAO;
 import com.example.moneymanager.dao.TransactionDAO;
 import com.example.moneymanager.dao.TypeDAO;
 import com.example.moneymanager.dto.TransactionDTO;
-import com.example.moneymanager.dto.TypeDTO;
-import com.example.moneymanager.model.Category;
 import com.example.moneymanager.model.Transaction;
 import com.example.moneymanager.model.Type;
 import com.example.moneymanager.service.UserService;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import java.util.Optional;
 
 @Controller
@@ -35,7 +32,7 @@ public class TransactionController {
     TransactionDAO transactionDAO;
 
     @GetMapping("/transactions")
-    public String getTypes(Model model) {
+    public String getTransaction(Model model) {
         model.addAttribute("categories", categoryDAO.getAllCategories());
         model.addAttribute("types", typeDAO.getAllTypeByLoggedUser(userService.getLoggedUser()));
         model.addAttribute("transactions", transactionDAO.getAllTransactionByLoggedUser(userService.getLoggedUser()));

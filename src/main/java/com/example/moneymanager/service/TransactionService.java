@@ -6,7 +6,6 @@ import com.example.moneymanager.model.User;
 import com.example.moneymanager.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
